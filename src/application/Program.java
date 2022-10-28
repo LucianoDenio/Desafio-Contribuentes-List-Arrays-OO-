@@ -14,7 +14,7 @@ public class Program {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		
-		List <TaxPayer> list = new ArrayList<>();
+		List <TaxPayer> list = new ArrayList<>(); // lista principal com os dados do pagador
 		
 		System.out.println("Quantos contribuintes você vai digitar? ");
 		int N = sc.nextInt();
@@ -38,6 +38,20 @@ public class Program {
 			
 		}
 		
+		List<TaxPayer> tax = new ArrayList<>(); // nova lista que armazena os impostos 
+		TaxPayer payer = new TaxPayer(); // objeto para poder chamar funções
+		
+		for(int i=0;i<list.size();i++) {
+			Double salaryTax = payer.salaryTax(list.get(i).getSalaryIncome());
+			Double serviceTax = payer.servicesTax(list.get(i).getServicesIncome());
+			Double capitalTax = payer.capitalTax(list.get(i).getCapitalIncome());
+			Double grossTax = payer.grossTax(salaryTax, serviceTax, capitalTax);
+			Double taxRebate = payer.taxRebate(grossTax, list.get(i).getEducationSpending(), list.get(i).getHealthSpending());
+			Double netTax = payer.netTax(grossTax, taxRebate);
+			
+			TaxPayer allTax = new TaxPayer(salaryTax,serviceTax,capitalTax,grossTax,taxRebate,netTax);// construtor para todas as taxas e abatimentos
+			tax.add(allTax);
+		}
 		
 		
 		

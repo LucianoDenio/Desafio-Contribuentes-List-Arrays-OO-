@@ -7,12 +7,21 @@ public class TaxPayer {
 	private Double healthSpending;
 	private Double educationSpending;
 
+	
+	public TaxPayer() {
+	}
+
+	// construtor para a entrada de dados
 	public TaxPayer(Double salaryIncome, Double servicesIncome, Double capitalIncome, Double healthSpending,Double educationSpending) {
 		this.salaryIncome = salaryIncome;
 		this.servicesIncome = servicesIncome;
 		this.capitalIncome = capitalIncome;
 		this.healthSpending = healthSpending;
 		this.educationSpending = educationSpending;
+	}
+
+	public TaxPayer(Double salaryTax, Double serviceTax, Double capitalTax, Double grossTax, Double taxRebate,Double netTax) {
+		// TODO Auto-generated constructor stub
 	}
 
 	public Double getSalaryIncome() {
@@ -55,9 +64,9 @@ public class TaxPayer {
 		this.educationSpending = educationSpending;
 	}
 	
-	public double salaryTax(double salary) {
+	public Double salaryTax(double salary) {
 		if(salary < 3000) {
-			return 0;
+			return 0.0;
 		}
 		else if (salary < 5000) {
 			return salary/ 100 * 10;
@@ -65,26 +74,26 @@ public class TaxPayer {
 		else return salary/ 100 * 20;
 	}
 	
-	public double servicesTax(double taxServices) {
+	public Double servicesTax(double taxServices) {
 		return taxServices/100 *15;
 	}
 	
-	public double capitalTax(double taxCapital) {
+	public Double capitalTax(double taxCapital) {
 		return taxCapital/100 * 20;
 	}
 	
-	public double grossTax(double taxSalary, double taxServices, double taxCapital) {
+	public Double grossTax(double taxSalary, double taxServices, double taxCapital) {
 		return taxSalary + taxServices + taxCapital; 
 	}
 
-	public double taxRebate(double grossTax, double educationSpending, double healthSpending) {
+	public Double taxRebate(double grossTax, double educationSpending, double healthSpending) {
 		if(grossTax/100 * 30 < educationSpending + healthSpending) {
 			return grossTax/100*30;
 		}
 		else return educationSpending + healthSpending;
 	}
 	
-	public double netTax(double grossTax, double taxRebate) {
+	public Double netTax(double grossTax, double taxRebate) {
 		return grossTax - taxRebate;
 	}
 	
