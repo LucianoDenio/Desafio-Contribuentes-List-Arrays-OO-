@@ -20,9 +20,13 @@ public class TaxPayer {
 		this.educationSpending = educationSpending;
 	}
 
-	public TaxPayer(Double salaryTax, Double serviceTax, Double capitalTax, Double grossTax, Double taxRebate,Double netTax) {
-		// TODO Auto-generated constructor stub
+	public TaxPayer(Double grossTax, Double taxRebate, Double netTax) {
+		salaryIncome = grossTax;
+		servicesIncome = taxRebate;
+		capitalIncome = netTax;
 	}
+	
+	
 
 	public Double getSalaryIncome() {
 		return salaryIncome;
@@ -64,7 +68,9 @@ public class TaxPayer {
 		this.educationSpending = educationSpending;
 	}
 	
-	public Double salaryTax(double salary) {
+	
+	
+	public Double salaryTax(Double salary) {
 		if(salary < 3000) {
 			return 0.0;
 		}
@@ -74,15 +80,15 @@ public class TaxPayer {
 		else return salary/ 100 * 20;
 	}
 	
-	public Double servicesTax(double taxServices) {
+	public Double servicesTax(Double taxServices) {
 		return taxServices/100 *15;
 	}
 	
-	public Double capitalTax(double taxCapital) {
+	public Double capitalTax(Double taxCapital) {
 		return taxCapital/100 * 20;
 	}
 	
-	public Double grossTax(double taxSalary, double taxServices, double taxCapital) {
+	public Double grossTax(Double taxSalary, Double taxServices, Double taxCapital) {
 		return taxSalary + taxServices + taxCapital; 
 	}
 
@@ -97,5 +103,11 @@ public class TaxPayer {
 		return grossTax - taxRebate;
 	}
 	
-
+			
+	public String toString(Double grossTax, Double taxRebate, Double netTax) {
+		return String.format("Imposto bruto total: %.2f%n",grossTax)
+			+  String.format("Abatimento: %.2f%n",taxRebate)
+			+  String.format("Imposto devido: %.2f%n",netTax);
+	}
+	
 }

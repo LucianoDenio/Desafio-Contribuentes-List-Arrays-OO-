@@ -45,16 +45,23 @@ public class Program {
 			Double salaryTax = payer.salaryTax(list.get(i).getSalaryIncome());
 			Double serviceTax = payer.servicesTax(list.get(i).getServicesIncome());
 			Double capitalTax = payer.capitalTax(list.get(i).getCapitalIncome());
-			Double grossTax = payer.grossTax(salaryTax, serviceTax, capitalTax);
-			Double taxRebate = payer.taxRebate(grossTax, list.get(i).getEducationSpending(), list.get(i).getHealthSpending());
-			Double netTax = payer.netTax(grossTax, taxRebate);
+			Double gross = payer.grossTax(salaryTax, serviceTax, capitalTax);
+			Double rebate = payer.taxRebate(gross, list.get(i).getEducationSpending(), list.get(i).getHealthSpending());
+			Double net = payer.netTax(gross, rebate);
 			
-			TaxPayer allTax = new TaxPayer(salaryTax,serviceTax,capitalTax,grossTax,taxRebate,netTax);// construtor para todas as taxas e abatimentos
+			TaxPayer allTax = new TaxPayer(gross,rebate,net);// construtor para todas as taxas e abatimentos
 			tax.add(allTax);
+	
 		}
 		
-		
-		
+		for(int i=0;i<tax.size();i++) {
+			System.out.println();
+			System.out.println("Resumo do "+(i+1)+"o contribuinte:");
+			System.out.printf("Imposto bruto total: %.2f%n",tax.get(i).getSalaryIncome() );
+			System.out.printf("Abatimento: %.2f%n",tax.get(i).getServicesIncome());
+			System.out.printf("Imposto devido: %.2f%n", tax.get(i).getCapitalIncome());
+			System.out.println();
+		}
 		
 		
 		
