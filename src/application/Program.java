@@ -16,21 +16,23 @@ public class Program {
 		
 		List <TaxPayer> list = new ArrayList<>(); // lista principal com os dados do pagador
 		
-		System.out.println("Quantos contribuintes você vai digitar? ");
+		System.out.print("Quantos contribuintes você vai digitar? ");
 		int N = sc.nextInt();
+		System.out.println();
 		
 		for(int i=0;i<N;i++) {
 			System.out.println("Digite os dados do "+(i+1)+"o contribuinte: ");
 			System.out.print("Renda anual com salário: ");
 			Double salary = sc.nextDouble();
-			System.out.println("Renda anual com prestação de serviço: ");
+			System.out.print("Renda anual com prestação de serviço: ");
 			Double servicesIncome = sc.nextDouble();
-			System.out.println("Renda anual com ganho de capital: ");
+			System.out.print("Renda anual com ganho de capital: ");
 			Double capitalIncome = sc.nextDouble();
-			System.out.println("Gastos médicos: ");
+			System.out.print("Gastos médicos: ");
 			Double healthSpending = sc.nextDouble();
-			System.out.println("Gastos educacionais: ");
+			System.out.print("Gastos educacionais: ");
 			Double educationSpending = sc.nextDouble();
+			System.out.println();
 			
 			TaxPayer payer = new TaxPayer(salary,servicesIncome,capitalIncome,healthSpending,educationSpending);
 			

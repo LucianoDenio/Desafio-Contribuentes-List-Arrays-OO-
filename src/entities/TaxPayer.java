@@ -71,10 +71,10 @@ public class TaxPayer {
 	
 	
 	public Double salaryTax(Double salary) {
-		if(salary < 3000) {
+		if(salary/12 < 3000) {
 			return 0.0;
 		}
-		else if (salary < 5000) {
+		else if (salary/12 < 5000) {
 			return salary/ 100 * 10;
 		}
 		else return salary/ 100 * 20;
