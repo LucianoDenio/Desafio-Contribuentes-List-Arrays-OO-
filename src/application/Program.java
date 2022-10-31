@@ -40,28 +40,14 @@ public class Program {
 			
 		}
 		
-		List<TaxPayer> tax = new ArrayList<>(); // nova lista que armazena os impostos 
-		TaxPayer payer = new TaxPayer(); // objeto para poder chamar funções
+		
+		
 		
 		for(int i=0;i<list.size();i++) {
-			Double salaryTax = payer.salaryTax(list.get(i).getSalaryIncome());
-			Double serviceTax = payer.servicesTax(list.get(i).getServicesIncome());
-			Double capitalTax = payer.capitalTax(list.get(i).getCapitalIncome());
-			Double gross = payer.grossTax(salaryTax, serviceTax, capitalTax);
-			Double rebate = payer.taxRebate(gross, list.get(i).getEducationSpending(), list.get(i).getHealthSpending());
-			Double net = payer.netTax(gross, rebate);
-			
-			TaxPayer allTax = new TaxPayer(gross,rebate,net);// construtor para todas as taxas e abatimentos
-			tax.add(allTax);
-	
-		}
-		
-		for(int i=0;i<tax.size();i++) {
-			System.out.println();
 			System.out.println("Resumo do "+(i+1)+"o contribuinte:");
-			System.out.printf("Imposto bruto total: %.2f%n",tax.get(i).getSalaryIncome() );
-			System.out.printf("Abatimento: %.2f%n",tax.get(i).getServicesIncome());
-			System.out.printf("Imposto devido: %.2f%n", tax.get(i).getCapitalIncome());
+			System.out.printf("Imposto bruto total: %.2f%n", list.get(i).grossTax());
+			System.out.printf("Abatimento: %.2f%n", list.get(i).taxRebate());
+			System.out.printf("Imposto devido: %.2f%n", list.get(i).netTax());
 			System.out.println();
 		}
 		

@@ -70,44 +70,41 @@ public class TaxPayer {
 	
 	
 	
-	public Double salaryTax(Double salary) {
-		if(salary/12 < 3000) {
+	public double salaryTax() {
+		double month = salaryIncome/12.0;
+		if(month < 3000.0) {
 			return 0.0;
 		}
-		else if (salary/12 < 5000) {
-			return salary/ 100 * 10;
+		else if (month < 5000.0) {
+			return 10.0 * salaryIncome/100.0;
 		}
-		else return salary/ 100 * 20;
+		else return 20.0 * salaryIncome/100.0;
 	}
 	
-	public Double servicesTax(Double taxServices) {
-		return taxServices/100 *15;
+	public double servicesTax() {
+		return servicesIncome/100.0 *15.0;
 	}
 	
-	public Double capitalTax(Double taxCapital) {
-		return taxCapital/100 * 20;
+	public double capitalTax() {
+		return capitalIncome/100.0 * 20.0;
 	}
 	
-	public Double grossTax(Double taxSalary, Double taxServices, Double taxCapital) {
-		return taxSalary + taxServices + taxCapital; 
+	public double grossTax() {
+		return salaryTax() + servicesTax() + capitalTax(); 
 	}
 
-	public Double taxRebate(double grossTax, double educationSpending, double healthSpending) {
-		if(grossTax/100 * 30 < educationSpending + healthSpending) {
-			return grossTax/100*30;
+	public double taxRebate() {
+		double allExpensives = educationSpending + healthSpending;
+		double percentTax = grossTax()/100.0*30.0;
+		if(percentTax < allExpensives) {
+			return percentTax;
 		}
-		else return educationSpending + healthSpending;
+		else return allExpensives;
 	}
 	
-	public Double netTax(double grossTax, double taxRebate) {
-		return grossTax - taxRebate;
+	public double netTax() {
+		return grossTax() - taxRebate();
 	}
 	
-			
-	public String toString(Double grossTax, Double taxRebate, Double netTax) {
-		return String.format("Imposto bruto total: %.2f%n",grossTax)
-			+  String.format("Abatimento: %.2f%n",taxRebate)
-			+  String.format("Imposto devido: %.2f%n",netTax);
-	}
 	
 }
